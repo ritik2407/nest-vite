@@ -1,0 +1,27 @@
+<html lang='en'>
+
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>{{#if title}}{{title}}{{else}}NestJS + Vite Template{{/if}}</title>
+
+    <!-- Server-side initial data passed as JSON to client-side Vue -->
+    <script id='__INITIAL_DATA__' type='application/json'>
+      {{{json this}}}
+    </script>
+
+    <!-- Evaluates the custom tag block pointing to frontend script -->
+    {{{vite 'src/resource/main.ts'}}}
+  </head>
+
+  <body>
+    <div id='app'>
+      {{#if _component}}
+        <component :is="'{{_component}}'" v-bind='$data'></component>
+      {{else}}
+        {{{body}}}
+      {{/if}}
+    </div>
+  </body>
+
+</html>
